@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+        <script type="text/babel">
+            const Box=(props)=>{
+                return <div>{props.no}</div>
+            }
+            const Box1=(props)=>{
+                    return <div>
+                        {props.children}
+                        </div>
+            }
+            let Child =()=>{
+                return <div>Child Data1</div>
+            }
+            let Child1 =()=>{
+                return <div>Child Data2</div>
+            }  
+            
+            const App=()=>{
+                let [value,setValue]=React.useState(0)
+                let [isLoad,setValueLoad]=React.useState(false)
+                
+                    let increment=()=>{
+                       // setValue(value+1)
+                        for(let i=0;i<5;i++){
+                        //  alert(value);
+                            setValue((val)=>{
+                                return val+1;
+                                })
+
+                            }
+                        }
+                        let conditional =()=>{
+                            setValueLoad(true)
+                        }
+                       
+                    return <div>
+                            <div>First Program</div>
+                            <div>{value}</div>
+                            <button type='button' onClick={increment}>Increment Data</button>
+                            <Box no="1"/>
+                            <Box no="2"/>
+                            <Box no="3"/>
+                            <Box no="4"/>
+                            <Box1>Ramesh</Box1>
+                            <Box1>Suresh</Box1>
+                            <Box1>Somesh</Box1>
+                            <Box1>Jagadeesh</Box1>
+                            
+                            <button type='button' onClick={conditional}>Conditional Data</button>
+                            {
+                                /*
+                                isLoad && <Child/>
+                                */
+                            }
+                            {
+                                isLoad ? <Child/>: <Child1/>
+                            }
+                           
+                        </div>
+
+            }
+            const root=ReactDOM.createRoot(document.getElementById("root"));
+            root.render(<App/>)
+        </script>
+    </body>
+    </html>
